@@ -1,0 +1,568 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/cramforce/splittable#readme"
+
+    >splittable (v4.0.0)</a>
+</h1>
+<h4>Module bundler with support for code splitting, ES6 & CommonJS modules.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.splittable">module splittable</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan"></span>splittable</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.splittable.splittable">module splittable.splittable</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.splittable.splittable.splittable">
+            function <span class="apidocSignatureSpan">splittable.</span>splittable
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.splittable.splittable.getBundleFlags">
+            function <span class="apidocSignatureSpan">splittable.splittable.</span>getBundleFlags
+            <span class="apidocSignatureSpan">(g)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.splittable.splittable.getFlags">
+            function <span class="apidocSignatureSpan">splittable.splittable.</span>getFlags
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.splittable.splittable.getGraph">
+            function <span class="apidocSignatureSpan">splittable.splittable.</span>getGraph
+            <span class="apidocSignatureSpan">(entryModules, config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.splittable.splittable.maybeAddDotJs">
+            function <span class="apidocSignatureSpan">splittable.splittable.</span>maybeAddDotJs
+            <span class="apidocSignatureSpan">(id)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">splittable.splittable.</span>baseBundleWrapper</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">splittable.splittable.</span>bundleWrapper</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">splittable.splittable.</span>defaultWrapper</span>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.splittable" id="apidoc.module.splittable">module splittable</a></h1>
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.splittable.splittable" id="apidoc.module.splittable.splittable">module splittable.splittable</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.splittable.splittable.splittable" id="apidoc.element.splittable.splittable.splittable">
+        function <span class="apidocSignatureSpan">splittable.</span>splittable
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">splittable = function (config) {
+
+  if (!config || !config.modules) {
+    return Promise.reject(
+        new Error(&#x27;Pass an array of entry modules via modules option. &#x27; +
+            &#x27;Example: {modules: [&#x22;./first&#x22;, &#x22;./second&#x22;]}&#x27;));
+  }
+
+  return exports.getFlags(config).then(function(flagsArray) {
+    return new Promise(function(resolve, reject) {
+      new ClosureCompiler(flagsArray).run(function(exitCode, stdOut, stdErr) {
+        if (exitCode == 0) {
+          resolve({
+            warnings: config.warnings ? stdErr : null,
+          });
+        } else {
+          reject(
+              new Error(&#x27;Closure compiler compilation of bundles failed.\n&#x27; +
+                  stdOut + &#x27;\n&#x27; +
+                  stdErr));
+        }
+      });
+    })
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.splittable.splittable.getBundleFlags" id="apidoc.element.splittable.splittable.getBundleFlags">
+        function <span class="apidocSignatureSpan">splittable.splittable.</span>getBundleFlags
+        <span class="apidocSignatureSpan">(g)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getBundleFlags = function (g) {
+  var flagsArray = [];
+
+  // Write all the packages (directories with a package.json) as --js
+  // inputs to the flags. Closure compiler reads the packages to resolve
+  // non-relative module names.
+  var packageCount = 0;
+  Object.keys(g.packages).sort().forEach(function(package) {
+    flagsArray.push(&#x27;--js&#x27;, package);
+    packageCount++;
+  });
+  // Build up the weird flag structure that closure compiler calls
+  // modules and we call bundles.
+  var bundleKeys = Object.keys(g.bundles);
+  bundleKeys.sort().forEach(function(name) {
+    var isBase = name == &#x27;_base&#x27;;
+    var extraModules = 0;
+    var bundle = g.bundles[name];
+    if (isBase || bundleKeys.length == 1) {
+      flagsArray.push(&#x27;--js&#x27;, relativePath(process.cwd(),
+          require.resolve(&#x27;./base.js&#x27;)));
+      extraModules++;
+      Object.keys(g.browserMask).sort().forEach(function(mask) {
+        flagsArray.push(&#x27;--js&#x27;, mask);
+        extraModules++;
+      });
+    }
+    // In each bundle, first list JS files that belong into it.
+    bundle.modules.forEach(function(js) {
+      if (g.transformed[js]) {
+        js = g.transformed[js];
+      }
+      flagsArray.push(&#x27;--js&#x27;, js);
+    });
+    if (!isBase &#x26;&#x26; bundleKeys.length &#x3e; 1) {
+      flagsArray.push(&#x27;--js&#x27;, bundleTrailModule(bundle.name));
+      extraModules++;
+    }
+    // The packages count as inputs to the first module.
+    if (packageCount) {
+      extraModules += packageCount;
+      packageCount = 0;
+    }
+    // Replace directory separator with - in bundle filename
+    var name = bundle.name
+        .replace(/\.js$/g, &#x27;&#x27;)
+        .replace(/[\/\\]/g, &#x27;-&#x27;);
+    // And now build --module $name:$numberOfJsFiles:$bundleDeps
+    var cmd = name + &#x27;:&#x27; + (bundle.modules.length + extraModules);
+    // All non _base bundles depend on _base.
+    if (!isBase &#x26;&#x26; g.bundles._base) {
+      cmd += &#x27;:_base&#x27;;
+    }
+    flagsArray.push(&#x27;--module&#x27;, cmd);
+    if (bundleKeys.length &#x3e; 1) {
+      if (isBase) {
+        flagsArray.push(&#x27;--module_wrapper&#x27;, name + &#x27;:&#x27; +
+            exports.baseBundleWrapper);
+      } else {
+        flagsArray.push(&#x27;--module_wrapper&#x27;, name + &#x27;:&#x27; +
+            exports.bundleWrapper);
+      }
+    } else {
+      flagsArray.push(&#x27;--module_wrapper&#x27;, name + &#x27;:&#x27; +
+            exports.defaultWrapper);
+    }
+  });
+  flagsArray.push(&#x27;--js_module_root&#x27;, &#x27;./splittable-build/transformed/&#x27;);
+  flagsArray.push(&#x27;--js_module_root&#x27;, &#x27;./splittable-build/browser/&#x27;);
+  flagsArray.push(&#x27;--js_module_root&#x27;, &#x27;./&#x27;);
+  return flagsArray;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  } else {
+    flagsArray.push(&#x27;--&#x27; + flag, val);
+  }
+});
+
+return exports.getGraph(config.modules, config).then(function(g) {
+  return flagsArray.concat(
+      exports.<span class="apidocCodeKeywordSpan">getBundleFlags</span>(g, flagsArray));
+});
+};
+
+exports.getBundleFlags = function(g) {
+var flagsArray = [];
+
+// Write all the packages (directories with a package.json) as --js
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.splittable.splittable.getFlags" id="apidoc.element.splittable.splittable.getFlags">
+        function <span class="apidocSignatureSpan">splittable.splittable.</span>getFlags
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getFlags = function (config) {
+  // Reasonable defaults.
+  var flags = {
+    compilation_level: &#x27;ADVANCED&#x27;,
+    process_common_js_modules: true,
+    rewrite_polyfills: true,
+    create_source_map: &#x27;%outname%.map&#x27;,
+    parse_inline_source_maps: true,
+    apply_input_source_maps: true,
+    source_map_location_mapping: [
+      &#x27;splittable-build/transformed/|/&#x27;,
+      &#x27;splittable-build/browser/|/&#x27;,
+      &#x27;|/&#x27;,
+    ],
+    new_type_inf: true,
+    language_in: &#x27;ES6&#x27;,
+    language_out: &#x27;ES5&#x27;,
+    module_output_path_prefix: config.writeTo || &#x27;out/&#x27;,
+    externs: path.dirname(module.filename) + &#x27;/splittable.extern.js&#x27;,
+    jscomp_off: [
+      &#x27;accessControls&#x27;,
+      &#x27;globalThis&#x27;,
+      &#x27;misplacedTypeAnnotation&#x27;,
+      &#x27;nonStandardJsDocs&#x27;,
+      &#x27;suspiciousCode&#x27;,
+      &#x27;uselessCode&#x27;,
+    ],
+  };
+
+  // Turn object into deterministically sorted array.
+  var flagsArray = [];
+  Object.keys(flags).sort().forEach(function(flag) {
+    var val = flags[flag];
+    if (val instanceof Array) {
+      val.forEach(function(item) {
+        flagsArray.push(&#x27;--&#x27; + flag, item);
+      })
+    } else {
+      flagsArray.push(&#x27;--&#x27; + flag, val);
+    }
+  });
+
+  return exports.getGraph(config.modules, config).then(function(g) {
+    return flagsArray.concat(
+        exports.getBundleFlags(g, flagsArray));
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+if (!config || !config.modules) {
+  return Promise.reject(
+      new Error(&#x27;Pass an array of entry modules via modules option. &#x27; +
+          &#x27;Example: {modules: [&#x22;./first&#x22;, &#x22;./second&#x22;]}&#x27;));
+}
+
+return exports.<span class="apidocCodeKeywordSpan">getFlags</span>(config).then(function(flagsArray) {
+  return new Promise(function(resolve, reject) {
+    new ClosureCompiler(flagsArray).run(function(exitCode, stdOut, stdErr) {
+      if (exitCode == 0) {
+        resolve({
+          warnings: config.warnings ? stdErr : null,
+        });
+      } else {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.splittable.splittable.getGraph" id="apidoc.element.splittable.splittable.getGraph">
+        function <span class="apidocSignatureSpan">splittable.splittable.</span>getGraph
+        <span class="apidocSignatureSpan">(entryModules, config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getGraph = function (entryModules, config) {
+  var resolve;
+  var reject;
+  var promise = new Promise(function(res, rej) {
+    resolve = res;
+    reject = rej;
+  });
+  var topo = new TopologicalSort({});
+  var graph = {
+    entryModules: entryModules,
+    // Lookup whether a module is a dep of a given entry module
+    depOf: {},
+    // Map of module id to its deps array.
+    deps: {},
+    // Topological sorted array of all deps.
+    sorted: undefined,
+    // Generated bundles
+    bundles: {
+      // We always have a _base bundle.
+      _base: {
+        isBase: true,
+        name: &#x27;_base&#x27;,
+        // The modules in the bundle.
+        modules: [],
+      },
+    },
+    packages: {},
+    // Map of original to transformed filename.
+    transformed: {},
+    browserMask: {},
+  };
+
+  config.babel = config.babel || {};
+
+  // Use browserify with babel to learn about deps.
+  var b = browserify(entryModules, {
+    debug: true,
+    deps: true,
+    detectGlobals: false,
+  })
+  // We register 2 separate transforms. The initial stage are
+  // transforms that closure compiler does not support.
+  .transform(babel, {
+    babelrc: !!config.babel.babelrc,
+    plugins: config.babel.plugins || [
+      require.resolve(&#x22;babel-plugin-transform-react-jsx&#x22;),
+    ],
+    presets: config.babel.presets,
+  }).
+  // The second stage are transforms that closure compiler supports
+  // directly and which we don&#x27;t want to apply during deps finding.
+  transform(babel, {
+    babelrc: false,
+    plugins: [
+      require.resolve(&#x22;babel-plugin-transform-es2015-modules-commonjs&#x22;),
+    ]
+  });
+
+  b.on(&#x27;package&#x27;, function(pkg) {
+    if (!pkg.browser) {
+      return;
+    }
+    Object.keys(pkg.browser).sort().forEach(function(entry) {
+      if (/^\./.test(entry)) {
+        throw new Error(
+            &#x27;Relative entries in package.json#browser not yet supported: &#x27; +
+            entry + &#x27; [&#x27; + pkg.__dirname + &#x27;.package.json]&#x27;);
+      }
+      if (pkg.browser[entry] !== false) {
+        throw new Error(
+            &#x27;Only masking of entire modules via false supported in &#x27; +
+            &#x27;package.json#browser:&#x27; + entry +
+            &#x27; [&#x27; + pkg.__dirname + &#x27;.package.json]&#x27;);
+      }
+      var filename =
+          &#x27;splittable-build/browser/node_modules/&#x27; + entry;
+      var maskedPkg = &#x27;splittable-build/browser/node_modules/&#x27; +
+          entry.split(&#x27;/&#x27;)[0] + &#x27;/package.json&#x27;;
+      if (!/\//.test(entry)) {
+        filename += &#x27;/index&#x27;;
+      }
+      filename = exports.maybeAddDotJs(filename);
+      if (graph.browserMask[filename]) {
+        return;
+      }
+      graph.browserMask[filename] = true;
+      mkpath.sync(path.dirname(filename));
+      fs.writeFileSync(filename,
+          &#x27;// Generated to mask module via package.json#browser.\n&#x27; +
+          &#x27;module.exports = {};\n&#x27;);
+      if (graph.browserMask[pkg]) {
+        return;
+      }
+      graph.browserMask[maskedPkg] = true;
+      fs.writeFileSync(maskedPkg,
+          &#x27;{&#x22;Generated to mask module via package.json#browser&#x22;:true}\n&#x27;);
+    });
+  });
+  // TODO: Replace with proper plugin system.
+  var seenTransform = {};
+  b.on(&#x27;transform&#x27;, function(tr) {
+    if (tr instanceof babel) {
+      tr.once(&#x22;babelify&#x22;, function(result, filename) {
+        if (seenTransform[filename]) {
+          return;  // We only care about the first transform per file.
+        }
+        seenTransform[filename] = true;
+        filename = relativePath(process.cwd(), filename);
+        // Copy transformed code into shadow path. Files in this path
+        // have precedence over regular relative paths.
+        var target = &#x27;./splittable-build/transformed/&#x27; + filename;
+        mkpath.sync(path.dirname(target));
+        fs.writeFileSync(target, result.code);
+        graph.transformed[filename] = target;
+      });
+    }
+  });
+  // This gets us the actual deps. We collect them in an array, so
+  // we can sort them prior to building the dep tree. Otherwise the tree
+  // will not be stable.
+  var depEntries = [];
+  b.pipeline.get(&#x27;deps&#x27;).push(through.obj(function(row, enc, next) {
+    row.source = null;  // Release memory
+    depEntries.push(row);
+    next();
+  }));
+
+  b. ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      flagsArray.push(&#x27;--&#x27; + flag, item);
+    })
+  } else {
+    flagsArray.push(&#x27;--&#x27; + flag, val);
+  }
+});
+
+return exports.<span class="apidocCodeKeywordSpan">getGraph</span>(config.modules, config).then(function(g) {
+  return flagsArray.concat(
+      exports.getBundleFlags(g, flagsArray));
+});
+};
+
+exports.getBundleFlags = function(g) {
+var flagsArray = [];
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.splittable.splittable.maybeAddDotJs" id="apidoc.element.splittable.splittable.maybeAddDotJs">
+        function <span class="apidocSignatureSpan">splittable.splittable.</span>maybeAddDotJs
+        <span class="apidocSignatureSpan">(id)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">maybeAddDotJs = function (id) {
+  var extensionMatch = id.match(/\.([a-zA-Z0-9]+)$/);
+  var extension = extensionMatch ? extensionMatch[1].toLowerCase() : null;
+  if (!knownExtensions[extension]) {
+    id += &#x27;.js&#x27;
+  }
+  return id;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var filename =
+    &#x27;splittable-build/browser/node_modules/&#x27; + entry;
+var maskedPkg = &#x27;splittable-build/browser/node_modules/&#x27; +
+    entry.split(&#x27;/&#x27;)[0] + &#x27;/package.json&#x27;;
+if (!/\//.test(entry)) {
+  filename += &#x27;/index&#x27;;
+}
+filename = exports.<span class="apidocCodeKeywordSpan">maybeAddDotJs</span>(filename);
+if (graph.browserMask[filename]) {
+  return;
+}
+graph.browserMask[filename] = true;
+mkpath.sync(path.dirname(filename));
+fs.writeFileSync(filename,
+    &#x27;// Generated to mask module via package.json#browser.\n&#x27; +
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
