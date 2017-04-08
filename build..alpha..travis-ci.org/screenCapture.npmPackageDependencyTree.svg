@@ -142,7 +142,7 @@
 <tspan x="10" y="2234">  │ ├── punycode@1.4.1 </tspan>
 <tspan x="10" y="2250">  │ ├── querystring-es3@0.2.1 </tspan>
 <tspan x="10" y="2266">  │ ├── read-only-stream@2.0.0 </tspan>
-<tspan x="10" y="2282">  │ ├─┬ readable-stream@2.2.8 </tspan>
+<tspan x="10" y="2282">  │ ├─┬ readable-stream@2.2.9 </tspan>
 <tspan x="10" y="2298">  │ │ ├── buffer-shims@1.0.0 </tspan>
 <tspan x="10" y="2314">  │ │ ├── core-util-is@1.0.2 </tspan>
 <tspan x="10" y="2330">  │ │ ├── process-nextick-args@1.0.7 </tspan>
