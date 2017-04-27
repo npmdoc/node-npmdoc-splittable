@@ -1,6 +1,6 @@
 # npmdoc-splittable
 
-#### api documentation for  splittable (v4.0.0)  [![npm package](https://img.shields.io/npm/v/npmdoc-splittable.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-splittable) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-splittable.svg)](https://travis-ci.org/npmdoc/node-npmdoc-splittable)
+#### basic api documentation for  [splittable (v4.0.0)](https://github.com/cramforce/splittable#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-splittable.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-splittable) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-splittable.svg)](https://travis-ci.org/npmdoc/node-npmdoc-splittable)
 
 #### Module bundler with support for code splitting, ES6 & CommonJS modules.
 
@@ -21,41 +21,14 @@
 ```json
 
 {
-    "name": "splittable",
-    "version": "4.0.0",
-    "description": "Module bundler with support for code splitting, ES6 & CommonJS modules.",
-    "main": "index.js",
-    "scripts": {
-        "test": "tap test/*.js"
+    "author": {
+        "name": "cramforce"
     },
     "bin": {
         "splittable": "bin.js"
     },
-    "keywords": [
-        "bundler",
-        "module",
-        "code splitting",
-        "commonjs",
-        "es6",
-        "closure compiler",
-        "JSX"
-    ],
-    "author": "cramforce",
-    "license": "Apache-2.0",
-    "devDependencies": {
-        "babel-plugin-transform-object-rest-spread": "^6.20.2",
-        "babel-preset-es2015": "^6.18.0",
-        "babel-preset-stage-0": "^6.16.0",
-        "bel": "^4.5.1",
-        "d3-array": "^1.0.1",
-        "d3-shape": "^1.0.3",
-        "fs-extra": "^1.0.0",
-        "json-stable-stringify": "^1.0.1",
-        "left-pad": "^1.1.3",
-        "promise-pjs": "^1.1.2",
-        "react": "^15.4.1",
-        "react-dom": "^15.4.1",
-        "tap": "^8.0.0"
+    "bugs": {
+        "url": "https://github.com/cramforce/splittable/issues"
     },
     "dependencies": {
         "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
@@ -73,10 +46,55 @@
         "tmp": "0.0.30",
         "topological-sort": "^0.1.5"
     },
+    "description": "Module bundler with support for code splitting, ES6 & CommonJS modules.",
+    "devDependencies": {
+        "babel-plugin-transform-object-rest-spread": "^6.20.2",
+        "babel-preset-es2015": "^6.18.0",
+        "babel-preset-stage-0": "^6.16.0",
+        "bel": "^4.5.1",
+        "d3-array": "^1.0.1",
+        "d3-shape": "^1.0.3",
+        "fs-extra": "^1.0.0",
+        "json-stable-stringify": "^1.0.1",
+        "left-pad": "^1.1.3",
+        "promise-pjs": "^1.1.2",
+        "react": "^15.4.1",
+        "react-dom": "^15.4.1",
+        "tap": "^8.0.0"
+    },
+    "directories": {},
+    "dist": {
+        "shasum": "185e2a5f828fd075a99b02d7a9571bf07962d6ff",
+        "tarball": "https://registry.npmjs.org/splittable/-/splittable-4.0.0.tgz"
+    },
+    "gitHead": "f31525b70d35ca87a7dc69ed27c0b5cef775511a",
+    "homepage": "https://github.com/cramforce/splittable#readme",
+    "keywords": [
+        "bundler",
+        "module",
+        "code splitting",
+        "commonjs",
+        "es6",
+        "closure compiler",
+        "JSX"
+    ],
+    "license": "Apache-2.0",
+    "main": "index.js",
+    "maintainers": [
+        {
+            "name": "cramforce"
+        }
+    ],
+    "name": "splittable",
+    "optionalDependencies": {},
     "repository": {
         "type": "git",
-        "url": "https://github.com/cramforce/splittable.git"
-    }
+        "url": "git+https://github.com/cramforce/splittable.git"
+    },
+    "scripts": {
+        "test": "tap test/*.js"
+    },
+    "version": "4.0.0"
 }
 ```
 
